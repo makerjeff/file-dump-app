@@ -15,10 +15,6 @@ var dataFromServer = [
     {filename: 'ninth_file.pdf', size: 2333234, last_modified: 1482743983465}
 ];
 
-var dummyFilteredData = [
-    {filename: 'filtered_file_array_data.mp4', size: 123456, last_modified: 12321412414}
-];
-
 var searchBox = document.getElementById('searchBox');
 var resultDiv = document.getElementById('resultDiv');
 var tableList = document.getElementById('tableList');
@@ -29,7 +25,7 @@ TableMaker.refresh(dataFromServer);
 
 
 
-// TODO - MAKE THIS ON A half second TIMER that resets after a key is pressed
+// TODO - MAKE THIS ON A QUARTER SECOND TIMER that resets after a key is pressed
 
 searchBox.addEventListener('keyup', function(e){
     console.log(e.keyCode + ', "' + this.value + '"');

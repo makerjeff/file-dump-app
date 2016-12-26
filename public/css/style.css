@@ -11,4 +11,7 @@ input {
 input:focus {
   outline: none; }
 
+input[type=text] {
+  height: 50px; }
+
 /*# sourceMappingURL=style.css.map */
