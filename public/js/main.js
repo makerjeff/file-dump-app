@@ -12,7 +12,10 @@ var dataFromServer = [
     {filename: 'sixth_file.mp4', size: 2333234, last_modified: 1482743983465},
     {filename: 'seventh_file.mp4', size: 2333234, last_modified: 1482743983465},
     {filename: 'eight_file.doc', size: 2333234, last_modified: 1482743983465},
-    {filename: 'ninth_file.pdf', size: 2333234, last_modified: 1482743983465}
+    {filename: 'tenth.pdf', size: 2333234, last_modified: 1482743983465},
+    {filename: 'elev_file.psd', size: 2333234, last_modified: 1482743983465},
+    {filename: 'nincompoop.psd', size: 2333234, last_modified: 1482743983465},
+    {filename: 'ninth_file.png', size: 2333234, last_modified: 1482743983465}
 ];
 
 var searchBox = document.getElementById('searchBox');
@@ -25,7 +28,8 @@ TableMaker.refresh(dataFromServer);
 
 
 
-// TODO - MAKE THIS ON A QUARTER SECOND TIMER that resets after a key is pressed
+// TODO - MAKE THIS ON A QUARTER SECOND TIMER that resets after a key is pressed,
+// TODO - Modularize.
 
 searchBox.addEventListener('keyup', function(e){
     console.log(e.keyCode + ', "' + this.value + '"');

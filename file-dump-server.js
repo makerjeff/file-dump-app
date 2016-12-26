@@ -15,11 +15,15 @@ const hbsModule     = require('express-handlebars');
 const chalk         = require('chalk');
 const clear         = require('clear');
 
+// --------------------
+// custom modules -----
+const fdb           = require('./models/files-db');
+
 
 // ====================
 // CONFIGURATION ======
 // ====================
-var server_version  = '0.0.1';
+var server_version  = '0.0.2';
 
 const handlebars    = hbsModule.create({defaultLayout: 'main'});
 app.engine('handlebars', handlebars.engine);
@@ -27,6 +31,7 @@ app.set('view engine', 'handlebars');
 
 
 const port          = process.env.PORT || 3000;
+
 
 
 
@@ -45,6 +50,17 @@ app.use(function(req,res,next){
 // ROUTES ==============
 app.get('/', function(req, res){
     res.render('index', {status: 'success', server: server_version, payload: {message:'yay.'}});
+});
+
+app.get('/fileList', function(req, res){
+    fdb.getFileListPromise('dummy').then(function(val){
+        console.log(val);
+        res.send ({status: 'success', payload: {message:'you got your file list.', files: ['dummy', 'array']}});
+
+    }).catch(function(reason){
+        console.log('Promise rejected. ' + reason);
+        res.send({status: 'rejected', payload: {message: 'file list request error.'}});
+    });
 });
 
 // ========================
