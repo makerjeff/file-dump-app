@@ -8,3 +8,6 @@ A simple file server application.
 - Mongoose
 - Handlebars
 
+##Developer Notes
+- Text input boxes disable key-repeat when 'keyup' event is used.
+

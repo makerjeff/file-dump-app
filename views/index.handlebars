@@ -1,0 +1,32 @@
+<h3>(index) </h3>
+
+{{! ---- DEBUG ---- }}
+{{#if server}}
+    <div class="serverVersion">{{server}}
+{{/if}}
+
+
+<!-- MAIN DIV -->
+<div class="container">
+
+    <p>You're on the main page.</p>
+
+    <div id="searchDiv" class="form-group">
+        <label for="searchBox">Search</label>
+        <input id=searchBox type="text" class="form-control">
+
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr> <th>file</th> <th>size</th> <th>last modified</th> <th>operation</th> </tr>
+        </thead>
+
+        <tbody id="tableList">
+            <!-- APPEND STUFF HERE -->
+        </tbody>
+    </table>
+
+</div>
+<script src="/js/TableMaker.js"></script>
+<script src="/js/main.js"></script>

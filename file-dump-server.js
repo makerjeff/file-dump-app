@@ -8,7 +8,8 @@
 // MODULES ===========
 // ===================
 
-const app           = require('express')(); //shortcut to express app.
+const express       = require('express');
+const app           = express();
 const http          = require('http').Server(app);  //shortcut to httpserver with Express app.
 const hbsModule     = require('express-handlebars');
 const chalk         = require('chalk');
@@ -22,7 +23,7 @@ var server_version  = '0.0.1';
 
 const handlebars    = hbsModule.create({defaultLayout: 'main'});
 app.engine('handlebars', handlebars.engine);
-app.set('view engine', handlebars);
+app.set('view engine', 'handlebars');
 
 
 const port          = process.env.PORT || 3000;
@@ -40,6 +41,11 @@ app.use(function(req,res,next){
     next();
 });
 
+// =====================
+// ROUTES ==============
+app.get('/', function(req, res){
+    res.render('index', {status: 'success', server: server_version, payload: {message:'yay.'}});
+});
 
 // ========================
 // CATCH ALL MIDDLEWARE ===
@@ -69,11 +75,8 @@ http.listen(port, function(err){
         console.log(Error('Error: ' + err));
     } else {
         clear();
-        console.log(chalk.green('Making America great again on port ' + port));
+        console.log(chalk.green('File Dump Server running on port ' + port));
         console.log(chalk.black.bgYellow(' Sever version: ' + server_version + ' '));
 
-        // -- TEST --
-        console.log(sdb.credentials);
-        console.log('Token lifespan: ' + tokenLifespan);
     }
 });
