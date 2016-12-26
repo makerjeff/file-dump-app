@@ -1,0 +1,20 @@
+{
+  "name": "file-dump-app",
+  "version": "0.0.1",
+  "description": "A simple file server app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jefferson Wu <makerjeffwu@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "chalk":"latest",
+    "mongoose":"latest",
+    "multer":"latest",
+    "express-handlebars":"latest",
+    "body-parser":"latest",
+    "cookie-parser":"latest"
+  }
+}
