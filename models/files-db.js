@@ -26,7 +26,9 @@ var dataFromServer = [
     {filename: 'tenth.pdf', size: 2333234, last_modified: 1482743983465},
     {filename: 'elev_file.psd', size: 2333234, last_modified: 1482743983465},
     {filename: 'nincompoop.jpg', size: 2333234, last_modified: 1482743983465},
-    {filename: 'ninth_file.jpg', size: 2333234, last_modified: 1482743983465}
+    {filename: 'ninth_file.jpg', size: 2333234, last_modified: 1482743983465},
+    {filename: 'bg_music.mp3', size: 477203, last_modified: 1482743983465},
+    {filename: 'unnamed.png', size: 20000, last_modified: 1234523525}
 ];
 
 /**
@@ -35,8 +37,14 @@ var dataFromServer = [
  */
 module.exports.getFileListPromise = function(account) {
     return new Promise(function(resolve, reject){
-        //resolve condition
+        var bool = true;
 
-        //reject condition
+        //resolve condition
+        if (bool === true) {
+            resolve(dataFromServer);
+        } else {
+            //reject condition
+            reject('no data.');
+        }
     });
 };

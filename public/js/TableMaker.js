@@ -37,8 +37,8 @@ var TableMaker = {
         var deleteIcon = document.createElement('span');
 
         // fill button objects
-        downloadButtonHitbox.href = '/' + dataObject.filename;
-        downloadButtonHitbox.setAttribute('download', dataObject.filename);
+        downloadButtonHitbox.href = '/download/' + dataObject.filename;
+        downloadButtonHitbox.setAttribute('download', dataObject.filename); //just the file name, not the url.
         downloadButton.classList.add('btn', 'btn-default');
         downloadIcon.classList.add('fa', 'fa-download');
         deleteButton.classList.add('btn', 'btn-danger');

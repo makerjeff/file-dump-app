@@ -23,7 +23,7 @@ const fdb           = require('./models/files-db');
 // ====================
 // CONFIGURATION ======
 // ====================
-var server_version  = '0.0.2';
+var server_version  = '0.0.3b';
 
 const handlebars    = hbsModule.create({defaultLayout: 'main'});
 app.engine('handlebars', handlebars.engine);
@@ -55,12 +55,16 @@ app.get('/', function(req, res){
 app.get('/fileList', function(req, res){
     fdb.getFileListPromise('dummy').then(function(val){
         console.log(val);
-        res.send ({status: 'success', payload: {message:'you got your file list.', files: ['dummy', 'array']}});
-
+        res.json(val);
     }).catch(function(reason){
         console.log('Promise rejected. ' + reason);
-        res.send({status: 'rejected', payload: {message: 'file list request error.'}});
+        res.send(reason);
     });
+});
+
+app.get('/download/:file', function(req, res){
+    //TODO: to JWT.verify here before sending file.
+    res.sendFile(process.cwd() + '/files/' + req.params.file);
 });
 
 // ========================
