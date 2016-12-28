@@ -2,38 +2,40 @@
  * Created by jeffersonwu on 12/26/16.
  */
 
+// ===============
+// VARIABLES =====
+// ===============
+
 // holds the data from the server (after dataPacker)
 var globalDataFromServer = [];
-
-
-window.addEventListener('load', function(e){
-
-    //TODO: get files on load.
-    console.log('page fully loaded.');
-    refreshDisplayData();
-
-    // -- temporary load button --
-    var loadButton = document.getElementById('tempButton');
-
-    // grab info,
-    loadButton.addEventListener('click', function(e){
-        refreshDisplayData();
-    });
-    // -- temporary load button - end --
-
-});
-
-window.addEventListener('DOMContentLoaded', function(e){
-    console.log('DOM loaded.');
-});
 
 var searchBox = document.getElementById('searchBox');
 var resultDiv = document.getElementById('resultDiv');
 var tableList = document.getElementById('tableList');
 
 
-// TODO - MAKE THIS ON A QUARTER SECOND TIMER that resets after a key is pressed,
-// TODO - Modularize.
+// ===================
+// EVENTS HANDLERS ===
+// ===================
+
+window.addEventListener('load', function(e){
+
+    //Get files on load.
+    console.log('page fully loaded.');
+    refreshDisplayData();
+
+    // manual load button (debug)
+    var loadButton = document.getElementById('tempButton');
+
+    loadButton.addEventListener('click', function(e){
+        refreshDisplayData();
+    });
+
+});
+
+window.addEventListener('DOMContentLoaded', function(e){
+    console.log('DOM loaded.');
+});
 
 searchBox.addEventListener('keyup', function(e){
     console.log(e.keyCode + ', "' + this.value + '"');
@@ -48,10 +50,9 @@ searchBox.addEventListener('keyup', function(e){
     }
 
     else {
-        //TODO: if box is empty, return original array
+        //If box is empty, return original array
         TableMaker.refresh(globalDataFromServer);
     }
-
 });
 
 /**
@@ -106,4 +107,8 @@ function refreshDisplayData(){
     });
 }
 
+// TODO: sort the data.
+function sortDisplayData(){
+
+}
 
