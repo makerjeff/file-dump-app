@@ -14,6 +14,8 @@ const http          = require('http').Server(app);  //shortcut to httpserver wit
 const hbsModule     = require('express-handlebars');
 const chalk         = require('chalk');
 const clear         = require('clear');
+const bodyParser    = require('body-parser');
+const cookieParser  = require('cookie-parser');
 
 // --------------------
 // custom modules -----
@@ -31,6 +33,14 @@ app.set('view engine', 'handlebars');
 
 
 const port          = process.env.PORT || 3000;
+
+
+// --- enable body parser ---
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+// --- enable cookie parser ---
+app.use(cookieParser('cookieparserkey'));    //add in params if signed.
 
 
 

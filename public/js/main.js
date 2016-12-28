@@ -5,8 +5,11 @@
 var globalDataFromServer = [];
 window.addEventListener('load', function(e){
 
+    //TODO: get files on load.
     console.log('page fully loaded.');
+    getFileListData().then(function(val){}).catch(function(reason){});
 
+    // -- temporary load button --
     var loadButton = document.getElementById('tempButton');
 
     // grab info,
@@ -17,8 +20,8 @@ window.addEventListener('load', function(e){
         }).catch(function(reason){
             console.log('Caught failure, Error: ' + reason);
         });
-
     });
+    // -- temporary load button - end --
 
 });
 
@@ -26,32 +29,9 @@ window.addEventListener('DOMContentLoaded', function(e){
     console.log('DOM loaded.');
 });
 
-
-//TODO: replace with AJAX data.
-// var dataFromServer = [
-//     {filename: 'first_file.mp4', size: 2333234, last_modified: 1482743983442},
-//     {filename: 'second_file.mp4', size: 2333234, last_modified: 1482743983445},
-//     {filename: 'third_file.mp4', size: 2333234, last_modified: 1482743983456},
-//     {filename: 'fourth_file.mp4', size: 2333234, last_modified: 1482743983465},
-//     {filename: 'fifth_file.mp4', size: 2333234, last_modified: 1482743983465},
-//     {filename: 'sixth_file.mp4', size: 2333234, last_modified: 1482743983465},
-//     {filename: 'seventh_file.mp4', size: 2333234, last_modified: 1482743983465},
-//     {filename: 'eight_file.doc', size: 2333234, last_modified: 1482743983465},
-//     {filename: 'tenth.pdf', size: 2333234, last_modified: 1482743983465},
-//     {filename: 'elev_file.psd', size: 2333234, last_modified: 1482743983465},
-//     {filename: 'nincompoop.psd', size: 2333234, last_modified: 1482743983465},
-//     {filename: 'ninth_file.png', size: 2333234, last_modified: 1482743983465}
-// ];
-
-
-
 var searchBox = document.getElementById('searchBox');
 var resultDiv = document.getElementById('resultDiv');
 var tableList = document.getElementById('tableList');
-
-
-
-
 
 
 // TODO - MAKE THIS ON A QUARTER SECOND TIMER that resets after a key is pressed,
