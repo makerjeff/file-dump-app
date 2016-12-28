@@ -7,7 +7,12 @@ window.addEventListener('load', function(e){
 
     //TODO: get files on load.
     console.log('page fully loaded.');
-    getFileListData().then(function(val){}).catch(function(reason){});
+    getFileListData().then(function(val){
+        globalDataFromServer = val;
+    }).catch(function(reason){
+        console.log('First load failure. Error: ' + reason);
+
+    });
 
     // -- temporary load button --
     var loadButton = document.getElementById('tempButton');
@@ -97,7 +102,6 @@ function getFileListData(){
             }
         });
     });
-
 }
 
 

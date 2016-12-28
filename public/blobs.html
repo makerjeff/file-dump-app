@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blobs</title>
+</head>
+<body>
+<h1>Blobs</h1>
+
+<div id="paragraph">
+    <p>will be replaced.</p>
+</div>
+
+<div id="resultDiv">
+
+</div>
+
+<script>
+    window.URL = window.URL || window.webkitURL;
+
+    //first argument must be a regular array, then a mime type.
+    var myBlob = new Blob(['This is my blob content.'], {type:'text/plain'});
+    var myReader = new FileReader();
+
+    //handle-it after fileReader has loaded the blob.
+    myReader.addEventListener('loadend', function(e){
+        document.getElementById('paragraph').innerHTML = e.target.result;
+    });
+
+    myReader.readAsText(myBlob, 'utf8');
+
+</script>
+
+<script>
+    var blob = new Blob(['body {background-color: #ffff00 ;}'], {type: 'text/css'});
+
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+
+    //createObjectURL returns a blob URL as a string.
+    link.href = window.URL.createObjectURL(blob);
+    document.body.appendChild(link);
+
+</script>
+
+</body>
+</html>
