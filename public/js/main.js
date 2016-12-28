@@ -2,29 +2,22 @@
  * Created by jeffersonwu on 12/26/16.
  */
 
+// holds the data from the server (after dataPacker)
 var globalDataFromServer = [];
+
+
 window.addEventListener('load', function(e){
 
     //TODO: get files on load.
     console.log('page fully loaded.');
-    getFileListData().then(function(val){
-        globalDataFromServer = val;
-    }).catch(function(reason){
-        console.log('First load failure. Error: ' + reason);
-
-    });
+    refreshDisplayData();
 
     // -- temporary load button --
     var loadButton = document.getElementById('tempButton');
 
     // grab info,
     loadButton.addEventListener('click', function(e){
-        getFileListData().then(function(val){
-            globalDataFromServer = val;
-            TableMaker.refresh(val);
-        }).catch(function(reason){
-            console.log('Caught failure, Error: ' + reason);
-        });
+        refreshDisplayData();
     });
     // -- temporary load button - end --
 
@@ -101,6 +94,15 @@ function getFileListData(){
                 reject('no data available.');
             }
         });
+    });
+}
+
+function refreshDisplayData(){
+    getFileListData().then(function(val){
+        globalDataFromServer = val;
+        TableMaker.refresh(val);
+    }).catch(function(reason){
+        console.log('Caught failure, Error: ' + reason);
     });
 }
 

@@ -2,6 +2,8 @@
  * Created by jeffersonwu on 12/26/16.
  */
 
+const fs = require('fs');
+
 var dataFromServer = [
     {filename: 'first_file.mp4', size: 2333234, last_modified: 1482743983442},
     {filename: 'second_file.mp4', size: 2333234, last_modified: 1482743983445},
@@ -48,3 +50,35 @@ module.exports.getFileListPromise = function(account) {
         }
     });
 };
+
+module.exports.getFileListPromise2 = function(account) {
+    return new Promise(function(resolve, reject){
+        fs.readdir(process.cwd() + '/files/', {encoding:'utf8'}, function(err, files){
+            if(err){
+                reject('Error occurred reading file directory, actual error: ' + err);
+            } else {
+                resolve(dataPacker(files));
+            }
+        });
+    });
+};
+
+// -------- helper functions --------
+/**
+ * Packs the data into a usable array of file info.
+ * @param arr
+ */
+function dataPacker(arr) {
+    var returndata = [];
+
+    arr.forEach(function(elem, ind, arr){
+        var stat = fs.statSync(process.cwd() + '/files/' + elem);
+        var obj = {filename: elem, size: stat.size, last_modified: stat.mtime};
+
+        returndata.push(obj);
+    });
+
+    return returndata;
+
+
+}

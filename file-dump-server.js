@@ -25,7 +25,7 @@ const fdb           = require('./models/files-db');
 // ====================
 // CONFIGURATION ======
 // ====================
-var server_version  = '0.0.3b';
+var server_version  = '0.0.4';
 
 const handlebars    = hbsModule.create({defaultLayout: 'main'});
 app.engine('handlebars', handlebars.engine);
@@ -63,7 +63,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/fileList', function(req, res){
-    fdb.getFileListPromise('dummy').then(function(val){
+    fdb.getFileListPromise2('dummy').then(function(val){
         console.log(val);
         res.json(val);
     }).catch(function(reason){
