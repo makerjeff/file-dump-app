@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>file input styling</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <style>
+
+        html, body {
+            margin: 0;
+            padding: 0;
+
+            width: 100%;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /*HIDE THE UGLY INPUT FILE BUTTON*/
+        .inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .inputfile + label {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: white;
+            background-color: black;
+            display: inline-block;
+
+            cursor: pointer;
+
+            padding: 10px;
+
+            border-radius: 5px;
+        }
+
+        /*properly hide fileinput, while still making label tab-accessible*/
+        .inputfile:focus + label,
+        .inputfile + label:hover {
+            background-color: red;
+            box-shadow: 3px 3px 3px rgba(0,0,0,0.25);
+        }
+
+        .inputfile:focus + label {
+            outline: 1px dotted #000;
+            outline: -webkit-focus-ring-color auto 5px;
+        }
+
+        #container {
+            /*position: absolute;*/
+            height: 100%;
+            width: 100%;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="centerBox">
+        <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected." multiple/>
+        <label id="filelabel" for="file">Choose a file</label>
+    </div>
+
+</div>
+
+
+
+<script>
+    //var inputs = document.querySelectorAll('.inputfile');
+
+    var inputs = document.getElementById('file');
+
+    inputs.addEventListener('change', function(e){
+
+
+
+        if(e.target.files.length > 1) {
+            console.log('<multiple files selected>');
+
+            var files = e.target.files;
+
+            for (var i = 0; i < files.length; i++) {
+                console.log(files[i].name);
+            }
+
+
+        } else {
+            console.log('<single file selected>');
+            console.log(e.target.files[0].name);
+        }
+
+    });
+
+
+
+
+</script>
+
+</body>
+</html>
